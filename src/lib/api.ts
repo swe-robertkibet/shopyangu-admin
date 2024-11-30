@@ -68,3 +68,48 @@ async function fetchApi<T>(
         method: 'DELETE',
       }),
   };
+
+  export const dashboardApi = {
+    getStats: async (): Promise<DashboardStats> => {
+      const [shops, products] = await Promise.all([
+        shopsApi.getAll(),
+        productsApi.getAll(),
+      ]);
+  
+      const totalStock = products.reduce((sum, p) => sum + p.stockLevel, 0);
+      const totalValue = products.reduce((sum, p) => sum + (p.price * p.stockLevel), 0);
+  
+      const stockStatus = products.reduce(
+        (acc, product) => {
+          if (product.stockLevel === 0) acc.outOfStock++;
+          else if (product.stockLevel <= 5) acc.lowStock++;
+          else acc.inStock++;
+          return acc;
+        },
+        { inStock: 0, lowStock: 0, outOfStock: 0 }
+      );
+  
+      // Calculate top shops by stock level
+      const shopStocks = shops.map(shop => {
+        const shopProducts = products.filter(p => p.shopId === shop.id);
+        return {
+          id: shop.id,
+          name: shop.name,
+          stockLevel: shopProducts.reduce((sum, p) => sum + p.stockLevel, 0),
+        };
+      });
+  
+      const topShops = shopStocks
+        .sort((a, b) => b.stockLevel - a.stockLevel)
+        .slice(0, 5);
+  
+      return {
+        totalShops: shops.length,
+        totalProducts: products.length,
+        totalStock,
+        totalValue,
+        stockStatus,
+        topShops,
+      };
+    },
+  };
