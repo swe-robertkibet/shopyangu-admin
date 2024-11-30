@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "mock-api": "json-server --watch public/mock/db.json --port 3001"
+    "mock-api": "json-server --watch public/mock/db.json --port 5000",
+    "dev:mock": "concurrently \"npm run dev\" \"npm run mock-api\""
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
@@ -25,6 +26,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "concurrently": "^9.1.0",
     "eslint": "^8",
     "eslint-config-next": "15.0.3",
     "postcss": "^8",
