@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "mock-api": "json-server --watch public/mock/db.json --port 3001"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
