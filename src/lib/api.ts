@@ -20,3 +20,25 @@ async function fetchApi<T>(
     return response.json();
   }
   
+  export const shopsApi = {
+    getAll: () => fetchApi<Shop[]>('/shops'),
+    
+    getById: (id: number) => fetchApi<Shop>(`/shops/${id}`),
+    
+    create: (data: Omit<Shop, 'id'>) => 
+      fetchApi<Shop>('/shops', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }),
+    
+    update: (id: number, data: Partial<Shop>) =>
+      fetchApi<Shop>(`/shops/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+      }),
+    
+    delete: (id: number) =>
+      fetchApi<void>(`/shops/${id}`, {
+        method: 'DELETE',
+      }),
+  };
