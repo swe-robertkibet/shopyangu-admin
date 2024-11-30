@@ -60,14 +60,15 @@ export const useStore = create<StoreState>((set, get) => ({
       isLoading: { ...state.isLoading, shops: true },
       error: { ...state.error, shops: null },
     }));
-    
+  
     try {
       const shops = await shopsApi.getAll();
       set({ shops, isLoading: { ...get().isLoading, shops: false } });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       set(state => ({
         isLoading: { ...state.isLoading, shops: false },
-        error: { ...state.error, shops: error.message },
+        error: { ...state.error, shops: errorMessage },
       }));
     }
   },
@@ -77,14 +78,15 @@ export const useStore = create<StoreState>((set, get) => ({
       isLoading: { ...state.isLoading, products: true },
       error: { ...state.error, products: null },
     }));
-    
+  
     try {
       const products = await productsApi.getAll();
       set({ products, isLoading: { ...get().isLoading, products: false } });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       set(state => ({
         isLoading: { ...state.isLoading, products: false },
-        error: { ...state.error, products: error.message },
+        error: { ...state.error, products: errorMessage },
       }));
     }
   },
@@ -94,17 +96,19 @@ export const useStore = create<StoreState>((set, get) => ({
       isLoading: { ...state.isLoading, stats: true },
       error: { ...state.error, stats: null },
     }));
-    
+  
     try {
       const stats = await dashboardApi.getStats();
       set({ stats, isLoading: { ...get().isLoading, stats: false } });
     } catch (error) {
+      const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
       set(state => ({
         isLoading: { ...state.isLoading, stats: false },
-        error: { ...state.error, stats: error.message },
+        error: { ...state.error, stats: errorMessage },
       }));
     }
   },
+  
   
   // CRUD actions for shops
   createShop: async (data) => {
