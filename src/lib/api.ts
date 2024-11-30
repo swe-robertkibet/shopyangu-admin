@@ -42,3 +42,29 @@ async function fetchApi<T>(
         method: 'DELETE',
       }),
   };
+
+  export const productsApi = {
+    getAll: () => fetchApi<Product[]>('/products'),
+    
+    getById: (id: number) => fetchApi<Product>(`/products/${id}`),
+    
+    getByShop: (shopId: number) => 
+      fetchApi<Product[]>(`/products?shopId=${shopId}`),
+    
+    create: (data: Omit<Product, 'id'>) =>
+      fetchApi<Product>('/products', {
+        method: 'POST',
+        body: JSON.stringify(data),
+      }),
+    
+    update: (id: number, data: Partial<Product>) =>
+      fetchApi<Product>(`/products/${id}`, {
+        method: 'PATCH',
+        body: JSON.stringify(data),
+      }),
+    
+    delete: (id: number) =>
+      fetchApi<void>(`/products/${id}`, {
+        method: 'DELETE',
+      }),
+  };
