@@ -1,0 +1,69 @@
+{
+    "shops": [
+      {
+        "id": 1,
+        "name": "Electronics Store",
+        "description": "Best electronics in town",
+        "logo": "/images/electronics.png"
+      },
+      {
+        "id": 2,
+        "name": "Fashion Boutique",
+        "description": "Trendy fashion for everyone",
+        "logo": "/images/fashion.png"
+      },
+      {
+        "id": 3,
+        "name": "Home Goods",
+        "description": "Everything for your home",
+        "logo": "/images/home.png"
+      }
+    ],
+    "products": [
+      {
+        "id": 1,
+        "shopId": 1,
+        "name": "Smartphone",
+        "price": 599.99,
+        "stockLevel": 10,
+        "description": "Latest smartphone model",
+        "image": "/images/smartphone.png"
+      },
+      {
+        "id": 2,
+        "shopId": 1,
+        "name": "Laptop",
+        "price": 999.99,
+        "stockLevel": 5,
+        "description": "Powerful laptop for work and gaming",
+        "image": "/images/laptop.png"
+      },
+      {
+        "id": 3,
+        "shopId": 2,
+        "name": "Summer Dress",
+        "price": 49.99,
+        "stockLevel": 20,
+        "description": "Light and comfortable summer dress",
+        "image": "/images/dress.png"
+      },
+      {
+        "id": 4,
+        "shopId": 2,
+        "name": "Jeans",
+        "price": 79.99,
+        "stockLevel": 15,
+        "description": "Classic blue jeans",
+        "image": "/images/jeans.png"
+      },
+      {
+        "id": 5,
+        "shopId": 3,
+        "name": "Coffee Table",
+        "price": 199.99,
+        "stockLevel": 3,
+        "description": "Modern coffee table",
+        "image": "/images/table.png"
+      }
+    ]
+  }
